@@ -22,8 +22,7 @@ namespace PixabayProject.Controllers
             }
             else
             {
-                responseSend.Dispose();
-                return null;
+                return new List<Pixabay>();
             }
         }
 
