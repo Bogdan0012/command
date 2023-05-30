@@ -4,6 +4,7 @@ using PixabayProject.Models;
 using System;
 using System.Net.Http;
 using System.Text.Json;
+using System.Web;
 
 namespace PixabayProject.Controllers
 {
@@ -19,7 +20,7 @@ namespace PixabayProject.Controllers
         public async Task<List<Pixabay>> FindPicture(string imgURL)
         {
             HttpClient httpClient = new HttpClient();
-            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q={Uri.EscapeDataString(imgURL)}&image_type=photo");
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q={HttpUtility.UrlEncode(imgURL)}&image_type=photo");
             using var responseSend = await httpClient.SendAsync(requestPass);
             if (responseSend.IsSuccessStatusCode)
             {
