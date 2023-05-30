@@ -19,7 +19,7 @@ namespace PixabayProject.Controllers
         [Route("GetPictures")]
         public async Task<List<Pixabay>> GetPixabayPictures(string images)
         {
-            PixabayController pixabayController = new PixabayController(configuration);
+            PixabayController pixabayController = new PixabayController(configuration["Authorization:key"]);
             try
             {
                 var requestToController = pixabayController.FindPicture(images);

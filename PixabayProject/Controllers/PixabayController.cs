@@ -9,17 +9,17 @@ namespace PixabayProject.Controllers
 {
     public class PixabayController
     {
-        private readonly IConfiguration configuration;
+        private readonly string key;
 
-        public PixabayController(IConfiguration configuration)
+        public PixabayController(string key)
         {
-            this.configuration = configuration;
+            this.key = key;
         }
 
         public async Task<List<Pixabay>> FindPicture(string imgURL)
         {
             HttpClient httpClient = new HttpClient();
-            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={configuration["Authorization:key"]}&q={Uri.EscapeDataString(imgURL)}&image_type=photo");
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q={Uri.EscapeDataString(imgURL)}&image_type=photo");
             using var responseSend = await httpClient.SendAsync(requestPass);
             if (responseSend.IsSuccessStatusCode)
             {
