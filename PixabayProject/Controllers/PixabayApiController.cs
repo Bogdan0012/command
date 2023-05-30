@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using PixabayProject.Models;
 
 namespace PixabayProject.Controllers
@@ -12,14 +13,21 @@ namespace PixabayProject.Controllers
         public async Task<List<Pixabay>> GetPixabayPictures(string images)
         {
             PixabayController pixabayController = new PixabayController();
-            var requestToController = pixabayController.FindPicture(images);
-            if (requestToController != null)
+            try
             {
-                var responseData = await requestToController;
-                var responseToController = new List<Pixabay>(responseData);
-                return responseToController;
+                var requestToController = pixabayController.FindPicture(images);
+                if (requestToController != null)
+                {
+                    var responseData = await requestToController;
+                    var responseToController = new List<Pixabay>(responseData);
+                    return responseToController;
+                }
+                else
+                {
+                    return new List<Pixabay>();
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return new List<Pixabay>();
             }
