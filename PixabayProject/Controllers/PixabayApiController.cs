@@ -21,7 +21,7 @@ namespace PixabayProject.Controllers
             }
             else
             {
-                return null;
+                return new List<Pixabay>();
             }
         }
     }
