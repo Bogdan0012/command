@@ -8,11 +8,18 @@ namespace PixabayProject.Controllers
     [Route("api/[controller]")]
     public class PixabayApiController : ControllerBase
     {
+        private readonly IConfiguration configuration;
+
+        public PixabayApiController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         [HttpGet]
         [Route("GetPictures")]
         public async Task<List<Pixabay>> GetPixabayPictures(string images)
         {
-            PixabayController pixabayController = new PixabayController();
+            PixabayController pixabayController = new PixabayController(configuration);
             try
             {
                 var requestToController = pixabayController.FindPicture(images);
