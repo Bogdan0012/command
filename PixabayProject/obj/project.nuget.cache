@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ZmsoAULWNFc5o1UB5MdrTiD+SvJ2RHPa71z4NYbUcjHRAQ2DCywirvrhGpy7MqB59wUzmZBgO2xb5lhA5gKOsw==",
+  "dgSpecHash": "weKS4P0+L7Ci3Yj2a/kS1Kw1amKnBbTs4AFoAYYhxdx28yU3HO05zHoFXkRwj41FjM/0wdY04vYeJ3SvLOKEZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Toucc\\source\\repos\\PixabayProject\\PixabayProject\\PixabayProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Toucc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Toucc\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Toucc\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Toucc\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Toucc\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Toucc\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
