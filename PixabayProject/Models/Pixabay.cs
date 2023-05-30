@@ -2,6 +2,6 @@
 {
     public class Pixabay
     {
-        public string imageURL { get; set; }
+        public string largeImageURL { get; set; }
     }
 }
