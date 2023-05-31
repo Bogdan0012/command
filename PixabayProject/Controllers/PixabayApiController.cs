@@ -36,7 +36,7 @@ namespace PixabayProject.Controllers
                     return new List<Pixabay>();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new List<Pixabay>();
             }
@@ -60,7 +60,7 @@ namespace PixabayProject.Controllers
                     return new List<Pixabay>();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new List<Pixabay>();
             }
