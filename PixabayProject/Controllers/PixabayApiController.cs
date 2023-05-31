@@ -39,5 +39,30 @@ namespace PixabayProject.Controllers
                 return new List<Pixabay>();
             }
         }
+
+        [HttpGet]
+        [Route("GetPicturesByUser/{username}")]
+        public async Task<List<Pixabay>> GetPixabayPicturesByUser(string username)
+        {
+            PixabayController pixabayController = new PixabayController(configuration["Authorization:key"]);
+            try
+            {
+                var requestToController = pixabayController.FindPictureByUser(username);
+                if (requestToController != null)
+                {
+                    var responseData = await requestToController;
+                    var responseToController = new List<Pixabay>(responseData);
+                    return responseToController;
+                }
+                else
+                {
+                    return new List<Pixabay>();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Pixabay>();
+            }
+        }
     }
 }
