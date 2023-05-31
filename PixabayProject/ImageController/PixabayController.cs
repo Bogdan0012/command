@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PixabayProject.Models;
-using System;
-using System.Net.Http;
-using System.Text.Json;
 using System.Web;
 
 namespace PixabayProject.ImageController
@@ -25,8 +21,12 @@ namespace PixabayProject.ImageController
             if (responseSend.IsSuccessStatusCode)
             {
                 var responseContent = await responseSend.Content.ReadAsStringAsync();
-                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
-                return response.hitsOfImages;
+                PixabayImageResponse? response = JsonConvert.DeserializeObject<PixabayImageResponse>(responseContent);
+                if (response == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                return response.hits;
             }
             else
             {
@@ -42,8 +42,12 @@ namespace PixabayProject.ImageController
             if (responseSend.IsSuccessStatusCode)
             {
                 var responseContent = await responseSend.Content.ReadAsStringAsync();
-                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
-                return response.hitsOfImages;
+                PixabayImageResponse? response = JsonConvert.DeserializeObject<PixabayImageResponse>(responseContent);
+                if (response == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                return response.hits;
             }
             else
             {
@@ -59,8 +63,12 @@ namespace PixabayProject.ImageController
             if (responseSend.IsSuccessStatusCode)
             {
                 var repsonseContent = await responseSend.Content.ReadAsStringAsync();
-                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(repsonseContent);
-                return response.hitsOfVideos;
+                PixabayVideoResponse? response = JsonConvert.DeserializeObject<PixabayVideoResponse>(repsonseContent);
+                if(response == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                return response.hits;
             }
             else
             {
@@ -76,8 +84,12 @@ namespace PixabayProject.ImageController
             if (responseSend.IsSuccessStatusCode)
             {
                 var responseContent = await responseSend.Content.ReadAsStringAsync();
-                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
-                return response.hitsOfVideos;
+                PixabayVideoResponse? response = JsonConvert.DeserializeObject<PixabayVideoResponse>(responseContent);
+                if (response == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                return response.hits;
             }
             else
             {

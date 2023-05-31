@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PixabayProject.ImageController;
 using PixabayProject.Models;
 
@@ -9,12 +8,10 @@ namespace PixabayProject.Controllers
     [Route("api/[controller]")]
     public class PixabayApiController : ControllerBase
     {
-        private readonly IConfiguration configuration;
         private readonly IImageController<PixabayImages, PixabayVideos> imageController;
 
-        public PixabayApiController(IConfiguration configuration, IImageController<PixabayImages, PixabayVideos> imageController)
+        public PixabayApiController(IImageController<PixabayImages, PixabayVideos> imageController)
         {
-            this.configuration = configuration;
             this.imageController = imageController;
         }
 
