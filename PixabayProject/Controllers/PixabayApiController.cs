@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using PixabayProject.ImageController;
 using PixabayProject.Models;
 
 namespace PixabayProject.Controllers
@@ -9,20 +10,21 @@ namespace PixabayProject.Controllers
     public class PixabayApiController : ControllerBase
     {
         private readonly IConfiguration configuration;
+        private readonly IImageController<Pixabay> imageController;
 
-        public PixabayApiController(IConfiguration configuration)
+        public PixabayApiController(IConfiguration configuration, IImageController<Pixabay> imageController)
         {
             this.configuration = configuration;
+            this.imageController = imageController;
         }
 
         [HttpGet]
         [Route("GetPictures")]
         public async Task<List<Pixabay>> GetPixabayPictures(string images)
         {
-            PixabayController pixabayController = new PixabayController(configuration["Authorization:key"]);
             try
             {
-                var requestToController = pixabayController.FindPicture(images);
+                var requestToController = imageController.FindPicture(images);
                 if (requestToController != null)
                 {
                     var responseData = await requestToController;
@@ -44,10 +46,9 @@ namespace PixabayProject.Controllers
         [Route("GetPicturesByUser/{username}")]
         public async Task<List<Pixabay>> GetPixabayPicturesByUser(string username)
         {
-            PixabayController pixabayController = new PixabayController(configuration["Authorization:key"]);
             try
             {
-                var requestToController = pixabayController.FindPictureByUser(username);
+                var requestToController = imageController.FindPictureByUser(username);
                 if (requestToController != null)
                 {
                     var responseData = await requestToController;

@@ -6,9 +6,9 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Web;
 
-namespace PixabayProject.Controllers
+namespace PixabayProject.ImageController
 {
-    public class PixabayController
+    public class PixabayController : IImageController<Pixabay>
     {
         private readonly string key;
 
@@ -37,7 +37,7 @@ namespace PixabayProject.Controllers
         public async Task<List<Pixabay>> FindPictureByUser(string user)
         {
             HttpClient httpClient = new HttpClient();
-            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q=user:{HttpUtility.UrlEncode(user)});
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q=user:{HttpUtility.UrlEncode(user)}");
             using var responseSend = await httpClient.SendAsync(requestPass);
             if (responseSend.IsSuccessStatusCode)
             {

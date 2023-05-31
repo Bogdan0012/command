@@ -1,15 +1,21 @@
+using Microsoft.AspNetCore.Mvc;
+using PixabayProject.ImageController;
+using PixabayProject.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddScoped<IImageController<Pixabay>>(options =>
+{
+    return new PixabayController(builder.Configuration["Authorization:key"]);
+});
 
-// Configure the HTTP request pipeline.
+var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
