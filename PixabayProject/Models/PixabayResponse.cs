@@ -2,6 +2,7 @@
 {
     public class PixabayResponse
     {
-        public List<Pixabay> hits { get; set; } = new List<Pixabay>();
+        public List<PixabayImages> hitsOfImages { get; set; } = new List<PixabayImages>();
+        public List<PixabayVideos> hitsOfVideos { get; set; } = new List<PixabayVideos>();
     }
 }

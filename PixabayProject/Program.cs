@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IImageController<Pixabay>>(options =>
+builder.Services.AddScoped<IImageController<PixabayImages, PixabayVideos>>(options =>
 {
     return new PixabayController(builder.Configuration["Authorization:key"]);
 });

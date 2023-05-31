@@ -1,6 +1,6 @@
 ﻿namespace PixabayProject.Models
 {
-    public class Pixabay
+    public class PixabayImages
     {
         public string? largeImageURL { get; set; }
         public int? likes { get; set; }

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace PixabayProject.ImageController
 {
-    public class PixabayController : IImageController<Pixabay>
+    public class PixabayController : IImageController<PixabayImages, PixabayVideos>
     {
         private readonly string key;
 
@@ -17,7 +17,7 @@ namespace PixabayProject.ImageController
             this.key = key;
         }
 
-        public async Task<List<Pixabay>> FindPicture(string imgURL)
+        public async Task<List<PixabayImages>> FindPicture(string imgURL)
         {
             HttpClient httpClient = new HttpClient();
             using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q={HttpUtility.UrlEncode(imgURL)}&image_type=photo");
@@ -26,15 +26,15 @@ namespace PixabayProject.ImageController
             {
                 var responseContent = await responseSend.Content.ReadAsStringAsync();
                 PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
-                return response.hits;
+                return response.hitsOfImages;
             }
             else
             {
-                return new List<Pixabay>();
+                return new List<PixabayImages>();
             }
         }
 
-        public async Task<List<Pixabay>> FindPictureByUser(string user)
+        public async Task<List<PixabayImages>> FindPictureByUser(string user)
         {
             HttpClient httpClient = new HttpClient();
             using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q=user:{HttpUtility.UrlEncode(user)}");
@@ -43,11 +43,45 @@ namespace PixabayProject.ImageController
             {
                 var responseContent = await responseSend.Content.ReadAsStringAsync();
                 PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
-                return response.hits;
+                return response.hitsOfImages;
             }
             else
             {
-                return new List<Pixabay>();
+                return new List<PixabayImages>();
+            }
+        }
+
+        public async Task<List<PixabayVideos>> FindVideos(string imgURL)
+        {
+            HttpClient httpClient = new HttpClient();
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/videos/?key={key}&q={HttpUtility.UrlEncode(imgURL)}");
+            using var responseSend = await httpClient.SendAsync(requestPass);
+            if (responseSend.IsSuccessStatusCode)
+            {
+                var repsonseContent = await responseSend.Content.ReadAsStringAsync();
+                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(repsonseContent);
+                return response.hitsOfVideos;
+            }
+            else
+            {
+                return new List<PixabayVideos>();
+            }
+        }
+
+        public async Task<List<PixabayVideos>> FindVideoByUser(string user)
+        {
+            HttpClient httpClient = new HttpClient();
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/videos/?key={key}&q=user:{user}");
+            using var responseSend = await httpClient.SendAsync(requestPass);
+            if (responseSend.IsSuccessStatusCode)
+            {
+                var responseContent = await responseSend.Content.ReadAsStringAsync();
+                PixabayResponse response = JsonConvert.DeserializeObject<PixabayResponse>(responseContent);
+                return response.hitsOfVideos;
+            }
+            else
+            {
+                return new List<PixabayVideos>();
             }
         }
 

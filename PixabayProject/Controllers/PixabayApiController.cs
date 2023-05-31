@@ -10,9 +10,9 @@ namespace PixabayProject.Controllers
     public class PixabayApiController : ControllerBase
     {
         private readonly IConfiguration configuration;
-        private readonly IImageController<Pixabay> imageController;
+        private readonly IImageController<PixabayImages, PixabayVideos> imageController;
 
-        public PixabayApiController(IConfiguration configuration, IImageController<Pixabay> imageController)
+        public PixabayApiController(IConfiguration configuration, IImageController<PixabayImages, PixabayVideos> imageController)
         {
             this.configuration = configuration;
             this.imageController = imageController;
@@ -20,7 +20,7 @@ namespace PixabayProject.Controllers
 
         [HttpGet]
         [Route("GetPictures")]
-        public async Task<List<Pixabay>> GetPixabayPictures(string images)
+        public async Task<List<PixabayImages>> GetPixabayPictures(string images)
         {
             try
             {
@@ -28,23 +28,48 @@ namespace PixabayProject.Controllers
                 if (requestToController != null)
                 {
                     var responseData = await requestToController;
-                    var responseToController = new List<Pixabay>(responseData);
+                    var responseToController = new List<PixabayImages>(responseData);
                     return responseToController;
                 }
                 else
                 {
-                    return new List<Pixabay>();
+                    return new List<PixabayImages>();
                 }
             }
             catch (Exception)
             {
-                return new List<Pixabay>();
+                return new List<PixabayImages>();
+            }
+        }
+
+        [HttpGet]
+        [Route("GetVideos")]
+        public async Task<List<PixabayVideos>> GetPixabayVideos(string videos)
+        {
+            try
+            {
+                var requestToController = imageController.FindVideos(videos);
+                if(requestToController != null)
+                {
+                    var responseData = await requestToController;
+                    var responseToController = new List<PixabayVideos>(responseData);
+                    return responseToController;
+                }
+                else
+                {
+                    return new List<PixabayVideos>();
+                }
+            }
+            catch (Exception)
+            {
+
+                return new List<PixabayVideos>();
             }
         }
 
         [HttpGet]
         [Route("GetPicturesByUser/{username}")]
-        public async Task<List<Pixabay>> GetPixabayPicturesByUser(string username)
+        public async Task<List<PixabayImages>> GetPixabayPicturesByUser(string username)
         {
             try
             {
@@ -52,17 +77,41 @@ namespace PixabayProject.Controllers
                 if (requestToController != null)
                 {
                     var responseData = await requestToController;
-                    var responseToController = new List<Pixabay>(responseData);
+                    var responseToController = new List<PixabayImages>(responseData);
                     return responseToController;
                 }
                 else
                 {
-                    return new List<Pixabay>();
+                    return new List<PixabayImages>();
                 }
             }
             catch (Exception)
             {
-                return new List<Pixabay>();
+                return new List<PixabayImages>();
+            }
+        }
+
+        [HttpGet]
+        [Route("GetVideosByUser/{username}")]
+        public async Task<List<PixabayVideos>> GetPixabayVideoByUser(string username)
+        {
+            try
+            {
+                var requestToController = imageController.FindVideoByUser(username);
+                if (requestToController != null)
+                {
+                    var responseData = await requestToController;
+                    var responseToController = new List<PixabayVideos>(responseData);
+                    return responseToController;
+                }
+                else
+                {
+                    return new List<PixabayVideos>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<PixabayVideos>();
             }
         }
     }
