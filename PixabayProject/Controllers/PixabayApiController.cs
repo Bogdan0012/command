@@ -89,6 +89,30 @@ namespace PixabayProject.Controllers
         }
 
         [HttpGet]
+        [Route("GetPicturesByUser/{username}/{promt}")]
+        public async Task<List<PixabayImages>> GetPixabayPicturesByUserAndPromt(string username, string promt)
+        {
+            try
+            {
+                var requestToController = imageController.FindPictureByUser(username, promt);
+                if (requestToController != null)
+                {
+                    var responseData = await requestToController;
+                    var responseToController = new List<PixabayImages>(responseData);
+                    return responseToController;
+                }
+                else
+                {
+                    return new List<PixabayImages>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<PixabayImages>();
+            }
+        }
+
+        [HttpGet]
         [Route("GetVideosByUser/{username}")]
         public async Task<List<PixabayVideos>> GetPixabayVideoByUser(string username)
         {
