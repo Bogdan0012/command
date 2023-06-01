@@ -55,6 +55,28 @@ namespace PixabayProject.ImageController
             }
         }
 
+        public async Task<List<PixabayImages>> FindPictureByUser(string user, string promt = "")
+        {
+            HttpClient httpClient = new HttpClient();
+            using var requestPass = new HttpRequestMessage(HttpMethod.Get, $"https://pixabay.com/api/?key={key}&q={promt}+user:{HttpUtility.UrlEncode(user)}");
+            using var responseSend = await httpClient.SendAsync(requestPass);
+            if (responseSend.IsSuccessStatusCode)
+            {
+                var responseContent = await responseSend.Content.ReadAsStringAsync();
+                PixabayImageResponse? response = JsonConvert.DeserializeObject<PixabayImageResponse>(responseContent);
+                if (response == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                return response.hits;
+            }
+            else
+            {
+                return new List<PixabayImages>();
+            }
+        }
+
+
         public async Task<List<PixabayVideos>> FindVideos(string imgURL)
         {
             HttpClient httpClient = new HttpClient();

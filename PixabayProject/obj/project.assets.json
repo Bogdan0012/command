@@ -268,24 +268,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Toucc\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\stit2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Toucc\\Source\\Repos\\command\\PixabayProject\\PixabayProject.csproj",
+      "projectUniqueName": "F:\\ProjectsASP\\commandRepo\\command\\PixabayProject\\PixabayProject.csproj",
       "projectName": "PixabayProject",
-      "projectPath": "C:\\Users\\Toucc\\Source\\Repos\\command\\PixabayProject\\PixabayProject.csproj",
-      "packagesPath": "C:\\Users\\Toucc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Toucc\\Source\\Repos\\command\\PixabayProject\\obj\\",
+      "projectPath": "F:\\ProjectsASP\\commandRepo\\command\\PixabayProject\\PixabayProject.csproj",
+      "packagesPath": "C:\\Users\\stit2\\.nuget\\packages\\",
+      "outputPath": "F:\\ProjectsASP\\commandRepo\\command\\PixabayProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Toucc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\stit2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -339,7 +334,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
